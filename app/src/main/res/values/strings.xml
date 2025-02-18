@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">BMI-DSBB2</string>
+    <string name="logo_descripition">Logo descripition</string>
+    <string name="welcome">welcome</string>
+    <string name="your_name">Your Name</string>
+    <string name="your_name_here">Your name here</string>
+    <string name="next">Next</string>
+</resources>
