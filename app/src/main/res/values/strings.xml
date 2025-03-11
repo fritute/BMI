@@ -5,5 +5,8 @@
     <string name="your_name">What\'s your name?</string>
     <string name="your_name_here">Your name here</string>
     <string name="next">Next</string>
+    <string name="HI">Hi!</string>
+    <string name="Male">Male</string>
+    <string name="Female">Female</string>
 
 </resources>
