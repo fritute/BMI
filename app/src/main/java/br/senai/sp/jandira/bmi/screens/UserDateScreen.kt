@@ -16,11 +16,18 @@ import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForward
+import androidx.compose.material.icons.filled.ArrowUpward
+import androidx.compose.material.icons.filled.Balance
+import androidx.compose.material.icons.filled.CalendarMonth
+import androidx.compose.material.icons.filled.Email
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -32,15 +39,21 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import br.senai.sp.jandira.bmi.R
 
-
 @Composable
 fun UserDateScreen(modifier: Modifier = Modifier) {
     val nomeState = remember {
+        mutableStateOf("")
+    }
+    val weightState = remember {
+        mutableStateOf("")
+    }
+    val heightState = remember {
         mutableStateOf("")
     }
     Box(
@@ -49,8 +62,8 @@ fun UserDateScreen(modifier: Modifier = Modifier) {
             .background(
                 brush = Brush.linearGradient(
                     listOf(
-                        Color(0xFFA71BC0),
-                        Color(0xFF3FD31C)
+                        Color(0xFF6F347C),
+                        Color(0xFF700E60)
                     )
                 )
             )
@@ -62,14 +75,14 @@ fun UserDateScreen(modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = stringResource(R.string.HI),
-                fontSize = 48.sp,
+                fontSize = 20.sp,
                 color = Color.White,
-                modifier = Modifier.padding(start = 32.dp)
+                modifier = Modifier.padding(start = 32.dp, top = 40.dp)
             )
             Card(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .fillMaxHeight(0.9f), // Ajuste a altura do Card
+                    .fillMaxHeight(0.9f),
                 shape = RoundedCornerShape(
                     topStart = 50.dp,
                     topEnd = 50.dp
@@ -78,23 +91,26 @@ fun UserDateScreen(modifier: Modifier = Modifier) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .fillMaxHeight(0.8f) // Ajuste a altura da Row
                 ) {
                     Column(
                         modifier = Modifier
                             .weight(1f)
-                            .wrapContentHeight() // Ajuste a altura da Column
-                            .padding(16.dp)
+                            .wrapContentHeight()
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.logo5),
+                            painter = painterResource(id = R.drawable.logo04),
                             contentDescription = stringResource(id = R.string.logo_description),
                             modifier = Modifier
                                 .padding(top = 32.dp)
                                 .clip(CircleShape)
-                                .border(2.dp, Color.Red, CircleShape)
+                                .border(2.dp, Color.Magenta, CircleShape)
                         )
-                        Button(onClick = {}) {
+                        Button(
+                            onClick = {},
+                            colors = ButtonDefaults.buttonColors(containerColor = Color.Blue)
+                        ) {
                             Text(
                                 text = stringResource(R.string.Male)
                             )
@@ -104,21 +120,106 @@ fun UserDateScreen(modifier: Modifier = Modifier) {
                         modifier = Modifier
                             .weight(1f)
                             .wrapContentHeight()
-                            .padding(16.dp)
+                            .padding(16.dp),
+                        horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Image(
-                            painter = painterResource(id = R.drawable.logo4),
+                            painter = painterResource(id = R.drawable.logo05),
                             contentDescription = stringResource(id = R.string.logo_description),
                             modifier = Modifier
                                 .padding(top = 32.dp)
                                 .clip(CircleShape)
-                                .border(2.dp, Color.Red, CircleShape)
+                                .border(2.dp, Color.Magenta, CircleShape)
                         )
-                        Button(onClick = {}) {
+                        Button(
+                            onClick = {},
+                            colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+                        ) {
                             Text(
                                 text = stringResource(id = R.string.Female)
                             )
                         }
+                    }
+                }
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(16.dp),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    OutlinedTextField(
+                        value = nomeState.value,
+                        onValueChange = { nomeState.value = it },
+                        label = {
+                            Text(
+                                stringResource(R.string.Age)
+                            )
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                                leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Default.CalendarMonth,
+                                contentDescription = "",
+                                tint = Color(0xFF482C26)
+                            )
+                        }
+                    )
+                    OutlinedTextField(
+                        value = weightState.value,
+                        onValueChange = { weightState.value = it },
+                        label = {
+                            Text(
+                                stringResource(R.string.Weight)
+                            )
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Default.Balance,
+                                contentDescription = "",
+                                tint = Color(0xFF482C26)
+                            )
+                        }
+
+                    )
+                    OutlinedTextField(
+                        value = heightState.value,
+                        onValueChange = { heightState.value = it },
+                        label = {
+                            Text(
+                                stringResource(R.string.Height)
+                            )
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 8.dp),
+                        singleLine = true,
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                        leadingIcon = {
+                            Icon(
+                                imageVector = Icons.Default.ArrowUpward,
+                                contentDescription = "",
+                                tint = Color(0xFF482C26)
+                            )
+                        }
+                    )
+                }
+                Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center){
+                    Button(
+                        onClick = {},
+                        colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta),
+                        modifier = Modifier
+                            .fillMaxWidth(0.8f)
+                    ) {
+                        Text( stringResource(R.string.Calculo))
                     }
                 }
             }

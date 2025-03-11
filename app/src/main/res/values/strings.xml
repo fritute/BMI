@@ -8,5 +8,9 @@
     <string name="HI">Hi!</string>
     <string name="Male">Male</string>
     <string name="Female">Female</string>
+    <string name="Age">Age</string>
+    <string name="Weight">Weight</string>
+    <string name="Height">Height</string>
+    <string name="Calculo">Calculate</string>
 
 </resources>
