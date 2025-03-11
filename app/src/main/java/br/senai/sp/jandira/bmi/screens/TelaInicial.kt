@@ -40,6 +40,13 @@ fun TelaInicial(navController: NavHostController?) {
 
         mutableStateOf(value = "")
     }
+    var isErrorState = remember {
+        mutableStateOf(value = false)
+    }
+
+    var errorMessageState = remember {
+        mutableStateOf(value = false)
+    }
     Box(
         modifier = Modifier
             .fillMaxSize()
